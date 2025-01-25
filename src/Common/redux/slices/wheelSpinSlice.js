@@ -6,8 +6,9 @@ const initialState = {
     currency: "ETH",
     betAmount: 0.01,
     walletAmount: 100,
-    gameState: "RESET",
-    inGameMessage: "",
+    gameState: "START",
+    inGameMessage: "Start Round.",
+    winner:null,
     playerColor: null,
     serverOutcome: null,
 };

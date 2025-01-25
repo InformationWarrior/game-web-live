@@ -5,7 +5,7 @@ import {
   setInGameMessage,
   clearMessage,
 } from "../../../Common/redux/slices/wheelSpinSlice";
-import "../styles/Wheel.css"
+import "../styles/Wheel.css";
 
 const players = [
   { name: "Alice", betAmount: 10, optionSize: 0 },
@@ -16,15 +16,20 @@ const players = [
 ];
 
 // Calculate the total betAmount
-const totalBetAmount = players.reduce((total, player) => total + player.betAmount, 0);
+const totalBetAmount = players.reduce(
+  (total, player) => total + player.betAmount,
+  0
+);
 
 // Update optionSize based on the ratio of betAmount to totalBetAmount
-players.forEach(player => {
-  player.optionSize = parseFloat((player.betAmount / totalBetAmount) * players.length).toFixed(2);
+players.forEach((player) => {
+  player.optionSize = parseFloat(
+    (player.betAmount / totalBetAmount) * players.length
+  ).toFixed(2);
 });
 
 // Round optionSize to make it more readable(optional)
-players.forEach(player => {
+players.forEach((player) => {
   player.optionSize = Math.round(player.optionSize);
 });
 
@@ -48,8 +53,7 @@ function Spinner() {
       backgroundColor: generateUniqueColor(index),
       textColor: "white",
     },
-    optionSize: parseInt((player.betAmount / totalBetAmount) *
-      100)
+    optionSize: parseInt((player.betAmount / totalBetAmount) * 100),
   }));
 
   function generateUniqueColor(index) {
@@ -60,8 +64,14 @@ function Spinner() {
   useEffect(() => {
     if (gameState === "SPINNING") {
       handleSpinStart();
+    } else if (gameState === "RESET") {
+      handleResult();
     }
   }, [gameState]);
+
+  const handleResult = () => {
+    dispatch(setInGameMessage(`The winner is ${data[prizeNumber].name}`));
+  };
 
   const handleSpinStart = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -71,7 +81,7 @@ function Spinner() {
 
   const handleSpinComplete = () => {
     console.log(`The spinner landed on: ${data[prizeNumber].option}`);
-    dispatch(setInGameMessage(`The winner is ${data[prizeNumber].name}`));
+    // dispatch(setInGameMessage(`The winner is ${data[prizeNumber].name}`));
     setMustSpin(false); // Reset spinning state after completion
     // Trigger additional actions if needed
   };
@@ -82,7 +92,6 @@ function Spinner() {
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={data}
-        spinDuration={0}
         backgroundColors={["#3e3e3e", "#df3428"]}
         textColors={["#ffffff"]}
         onStopSpinning={handleSpinComplete}

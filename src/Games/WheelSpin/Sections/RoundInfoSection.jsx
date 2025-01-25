@@ -16,7 +16,19 @@ const RoundInfoSection = () => {
         </div>
         <div className="col-auto">
           {/* Timer Component */}
-          {/* <TimerComponent /> */}
+          <TimerComponent />
+        </div>
+      </div>
+
+      {/* Message Section */}
+      <div className="message-section bg-secondary text-white p-3 rounded">
+        {/* <h5 className="fs-6 fw-bold mb-2">In-Game Message</h5> */}
+        <div className="current-message-container">
+          {inGameMessage ? (
+            <div className="current-message py-1">{inGameMessage}</div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
@@ -41,32 +53,6 @@ const RoundInfoSection = () => {
       </div>
 
       <hr className="divider my-3" />
-
-      {/* Footer Section */}
-      <div className="row text-center">
-        <div className="col-6">
-          <div className="fs-5 fw-bold">--</div>
-          <div className="text-white">Your Future Entries</div>
-        </div>
-        <div className="col-6">
-          <div className="fs-5 fw-bold">--</div>
-          <div className="text-white">Total (0 Avg)</div>
-        </div>
-      </div>
-
-      <hr className="divider my-3" />
-
-      {/* Message Section */}
-      <div className="message-section bg-secondary text-white p-3 rounded">
-        {/* <h5 className="fs-6 fw-bold mb-2">In-Game Message</h5> */}
-        <div className="current-message-container">
-          {inGameMessage ? (
-            <div className="current-message py-1">{inGameMessage}</div>
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
     </div>
   );
 };

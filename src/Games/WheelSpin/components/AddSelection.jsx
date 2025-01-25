@@ -33,9 +33,9 @@ function AddSelection() {
     <button
       className="btn btn-secondary w-100 rounded py-2"
       onClick={handleAddSelection}
-      disabled={gameState !== "STARTING"}
+      disabled={gameState !== "BETTING"}
     >
-      {gameState === "STARTING" ? "Add Selection" : "Round Closed"}
+      {gameState === "BETTING" ? "Add Selection" : "Round Closed"}
     </button>
   );
 }
