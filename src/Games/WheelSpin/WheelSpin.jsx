@@ -25,7 +25,7 @@ function WheelSpin() {
           </div>
           {/* Bottom 25% Section */}
           <div className="row">
-            <div className="col-12 bg-dark rounded d-flex align-items-center justify-content-center">
+            <div className="col-12 bg-dark mt-3 rounded d-flex align-items-center justify-content-center">
               <RoundContentsSection />
             </div>
           </div>
@@ -41,7 +41,7 @@ function WheelSpin() {
           </div>
           {/* Bottom 50% Section */}
           <div className="row">
-            <div className="col-12 bg-dark rounded align-items-center">
+            <div className="col-12 bg-dark rounded mt-3 align-items-center">
               <PlayerEntrySection />
             </div>
           </div>
