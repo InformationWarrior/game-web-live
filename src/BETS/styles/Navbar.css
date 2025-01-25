@@ -1,0 +1,125 @@
+.nav-bar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  padding: 0.5em;
+  color: #fff;
+  font-size: 1.8rem; /* Slightly larger for better visibility */
+  cursor: pointer;
+  position: relative; /* To position hover effects */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hamburger-button:hover {
+  transform: scale(1.2); /* Slight zoom effect */
+  color: #88ff00; /* Neon green color on hover */
+}
+
+.hamburger-button:active {
+  transform: scale(0.9); /* Press effect */
+}
+
+/* Glow Effect on Hover */
+.hamburger-button::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hamburger-button:hover::after {
+  opacity: 1;
+}
+
+.navbar-logo {
+  padding: 0.5em;
+  font-weight: bold;
+  font-size: 2em;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-left: 2rem;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 6rem;
+  font-weight: 600;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.875rem;
+}
+
+.invite-button,
+.connect-button {
+  background-color: #1a1f25;
+  color: #ffffff;
+  border: 1px solid #88ff00;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.connect-button {
+  border-color: #5b6065;
+}
+
+.invite-button:hover,
+.connect-button:hover {
+  background-color: #88ff00;
+  color: #000;
+}
+
+/* Large screen devices */
+@media (min-width: 960px) {
+  .navbar-left {
+    display: none;
+  }
+}
+
+/* Small screen devices */
+@media (max-width: 959px) {
+  .navbar-title {
+    display: none;
+  }
+
+  .navbar-buttons {
+    position: fixed;
+    right: 1rem;
+    gap: 10px;
+    padding-right: 0;
+    z-index: 1000;
+    font-weight: 600;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.875rem;
+  }
+}
