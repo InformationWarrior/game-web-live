@@ -47,12 +47,12 @@ export default function SpinningWheel() {
       <motion.div
         className="wheel"
         animate={{ rotate: rotation }}
-        transition={{ duration: 10, ease: "easeOut" }}
+        transition={{ duration: 4, ease: "easeOut" }}
         style={{
           width: "300px",
           height: "300px",
           borderRadius: "50%",
-          border: "3px solid yellow",
+          // border: "3px solid yellow",
           position: "relative",
           overflow: "hidden",
         }}
