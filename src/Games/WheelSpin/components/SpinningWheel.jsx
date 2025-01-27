@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { PieChart, Pie, Cell, Tooltip } from "recharts"; // Use recharts for the pie chart
-import { Button } from "@mui/material";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setGameState,
+  setInGameMessage,
+} from "../../../Common/redux/slices/wheelSpinSlice";
 
 export default function SpinningWheel() {
+  const dispatch = useDispatch();
+  const gameState = useSelector((state) => state.wheelSpin.gameState);
+
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
 
   // Define the prizes and colors
   const segments = ["Prize 1", "Prize 2", "Prize 3"];
-  const colors = ["#02B2AF", "#2E96FF", "#B800D8"]; // Teal, Blue, Purple
+  const colors = ["#02B2AF", "#2E96FF", "#B800D8"];
 
-  // Set different percentage values for each pie slice
   const data = [
     { name: "Prize 1", value: 25, fill: "#02B2AF" },
     { name: "Prize 2", value: 40, fill: "#2E96FF" },
@@ -36,9 +42,20 @@ export default function SpinningWheel() {
       const selectedSegment =
         Math.floor(((totalRotation % 360) + segmentAngle / 2) / segmentAngle) %
         segments.length;
-      alert(`You won: ${segments[selectedSegment]}`);
+
+      // Dispatch winner message
+      const prize = segments[selectedSegment];
+      dispatch(setInGameMessage(`You won: ${prize}`));
+      dispatch(setGameState("RESET")); // Transition to RESET state
     }, 4000); // Matches animation duration
   };
+
+  // Spin the wheel when the gameState changes to SPINNING
+  useEffect(() => {
+    if (gameState === "SPINNING") {
+      spinWheel();
+    }
+  }, [gameState]); // Triggered when gameState changes
 
   return (
     <div
@@ -52,7 +69,6 @@ export default function SpinningWheel() {
           width: "300px",
           height: "300px",
           borderRadius: "50%",
-          // border: "3px solid yellow",
           position: "relative",
           overflow: "hidden",
         }}
@@ -65,8 +81,8 @@ export default function SpinningWheel() {
             cy="50%"
             innerRadius="0"
             outerRadius="150"
-            startAngle={90} // Start angle to match your design
-            endAngle={-270} // End angle to complete the circle
+            startAngle={90}
+            endAngle={-270}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -94,18 +110,16 @@ export default function SpinningWheel() {
         </PieChart>
       </motion.div>
 
-      <Button
-        variant="contained"
-        onClick={spinWheel}
-        disabled={isSpinning}
+      <p
         style={{
           marginTop: "20px",
-          padding: "10px 20px",
           fontSize: "16px",
+          color: isSpinning ? "#6c757d" : "#000",
+          textAlign: "center",
         }}
       >
-        {isSpinning ? "Spinning..." : "Spin the Wheel"}
-      </Button>
+        .
+      </p>
     </div>
   );
 }

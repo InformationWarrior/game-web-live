@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/RoundInfo.css";
-import TimerComponent from "../components/TimerComponent";
+import AnotherTimerComponent from "../components/AnotherTimerComponent";
 import { useSelector } from "react-redux";
 
 const RoundInfoSection = () => {
@@ -16,13 +16,12 @@ const RoundInfoSection = () => {
         </div>
         <div className="col-auto">
           {/* Timer Component */}
-          <TimerComponent />
+          <AnotherTimerComponent />
         </div>
       </div>
 
       {/* Message Section */}
-      <div className="message-section bg-secondary text-white p-3 rounded">
-        {/* <h5 className="fs-6 fw-bold mb-2">In-Game Message</h5> */}
+      {/* <div className="message-section bg-secondary text-white p-3 rounded">
         <div className="current-message-container">
           {inGameMessage ? (
             <div className="current-message py-1">{inGameMessage}</div>
@@ -30,7 +29,7 @@ const RoundInfoSection = () => {
             ""
           )}
         </div>
-      </div>
+      </div> */}
 
       {/* Details Section */}
       <div className="row text-center mb-3">
