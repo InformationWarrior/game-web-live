@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setGameState,
   setInGameMessage,
@@ -7,10 +7,17 @@ import {
 
 const AnotherTimerComponent = () => {
   const dispatch = useDispatch();
+  const { inGameMessage } = useSelector((state) => state.wheelSpin);
 
   const [timer, setTimer] = useState("00:00");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
+
+  useEffect(() => {
+    if (inGameMessage === "Ready to spin again!") {
+      handleSpinClick()
+    }
+  }, [inGameMessage])
 
   // Start the SPINNING state and subsequent 10-second timer
   const handleSpinClick = () => {
