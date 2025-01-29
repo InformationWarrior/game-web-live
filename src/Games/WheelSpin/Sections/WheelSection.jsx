@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "../components/Spinner";
 import SpinningWheel from "../components/SpinningWheel";
+import WheelWithPin from "../components/WheelWithPin";
 
 function WheelSection() {
   return (
@@ -8,7 +9,8 @@ function WheelSection() {
       <h4 className="text-white mb-4">Current Round</h4>
       <div className="spinner-container d-flex justify-content-center">
         {/* <Spinner /> */}
-        <SpinningWheel />
+        {/* <SpinningWheel /> */}
+        <WheelWithPin selectedPrize={20} />
       </div>
     </div>
   );
