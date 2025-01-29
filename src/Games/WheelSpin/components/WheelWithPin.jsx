@@ -10,17 +10,17 @@ import pinImage from "../assets/pin1.webp";
 
 // Define prizes and colors
 const segments = ["Prize 1", "Prize 2", "Prize 3"];
-// const data = [
-//   { name: "Prize 1", value: 25, fill: "#02B2AF" },
-//   { name: "Prize 2", value: 40, fill: "#2E96FF" },
-//   { name: "Prize 3", value: 35, fill: "#B800D8" },
-// ];
-
 const data = [
-  { name: "Prize 1", value: 25, fill: "red" },
-  { name: "Prize 2", value: 40, fill: "green" },
-  { name: "Prize 3", value: 35, fill: "blue" },
+  { name: "Prize 1", value: 25, fill: "#02B2AF" },
+  { name: "Prize 2", value: 40, fill: "#2E96FF" },
+  { name: "Prize 3", value: 35, fill: "#B800D8" },
 ];
+
+// const data = [
+//   { name: "Prize 1", value: 25, fill: "red" },
+//   { name: "Prize 2", value: 40, fill: "green" },
+//   { name: "Prize 3", value: 35, fill: "blue" },
+// ];
 
 const segmentAngle = 360 / segments.length; // Angle per segment
 
