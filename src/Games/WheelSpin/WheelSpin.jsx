@@ -1,5 +1,15 @@
 import React from "react";
-import "./styles/WheelSpin.css";
+
+// CSS Modules
+import PageLayout from "./styles/SectionModules/PageLayout.module.css";
+import GridLayout from "./styles/SectionModules/GridLayout.module.css";
+import PlayersList from "./styles/SectionModules/PlayersList.module.css";
+import SpinWheel from "./styles/SectionModules/SpinWheel.module.css";
+import RoundInfo from "./styles/SectionModules/RoundInfo.module.css";
+import RoundContents from "./styles/SectionModules/RoundContents.module.css";
+import PlayerBets from "./styles/SectionModules/PlayerBets.module.css";
+
+// Components
 import RoundInfoSection from "./Sections/RoundInfoSection";
 import RoundContentsSection from "./Sections/RoundContentsSection";
 import PlayerEntrySection from "./Sections/PlayerEntrySection";
@@ -8,46 +18,27 @@ import PlayersListSection from "./Sections/PlayersListSection";
 
 function WheelSpin() {
   return (
-    <div className="container-fluid">
-      <div className="row justify-content-evenly wheel-row">
-        {/* Players List Section */}
-        <div className="col-xxl-3 col-xl-3 col-md-3 col-12 bg-dark rounded overflow-auto players-list wheel-col">
-          <PlayersListSection />
-        </div>
-
-        {/* Wheel Spin Section */}
-        <div className="col-xxl-5 col-xl-5 col-md-5 col-12 wheel-col">
-          {/* Top 75% Section */}
-          <div className="row">
-            <div className="col-12 bg-dark rounded">
-              <WheelSection />
-            </div>
+    <>
+      <div className={PageLayout.container}>
+        <div className={GridLayout.container}>
+          <div className={PlayersList.container}>
+            <PlayersListSection />
           </div>
-          {/* Bottom 25% Section */}
-          <div className="row">
-            <div className="col-12 bg-dark mt-3 rounded d-flex align-items-center justify-content-center">
-              <RoundContentsSection />
-            </div>
+          <div className={SpinWheel.container}>
+            <WheelSection />
           </div>
-        </div>
-
-        {/* Info Section */}
-        <div className="col-xxl-3 col-xl-3 col-md-3 col-12 wheel-col">
-          {/* Top 50% Section */}
-          <div className="row">
-            <div className="col-12 bg-dark rounded align-items-center">
-              <RoundInfoSection />
-            </div>
+          <div className={RoundInfo.container}>
+            <RoundInfoSection />
           </div>
-          {/* Bottom 50% Section */}
-          <div className="row">
-            <div className="col-12 bg-dark rounded mt-3 align-items-center">
-              <PlayerEntrySection />
-            </div>
+          <div className={RoundContents.container}>
+            <RoundContentsSection />
+          </div>
+          <div className={PlayerBets.container}>
+            <PlayerEntrySection />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
