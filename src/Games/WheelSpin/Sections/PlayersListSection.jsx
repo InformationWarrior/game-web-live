@@ -1,8 +1,7 @@
 import React from "react";
 import Player from "../components/Player";
 import PlayersList from "../styles/SectionModules/PlayersList.module.css";
-import heading from "../styles/PlayersList/heading.module.css";
-// import "../styles/PlayersList.css";
+// import heading from "../styles/PlayersList/heading.module.css";
 import playerAvatar from "../assets/playerAvatar.png";
 
 function PlayersListSection() {
@@ -183,7 +182,7 @@ function PlayersListSection() {
   return (
     <div className={PlayersList.content}>
       <div className={PlayersList.heading}>
-        <p className={PlayersList.fontStyle}>{players.length} Players</p>
+        <p className={PlayersList.headingStyle}>{players.length} Players</p>
       </div>
       <div>
         {players.map((player, index) => (
