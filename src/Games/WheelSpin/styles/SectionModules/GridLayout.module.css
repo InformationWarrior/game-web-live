@@ -3,10 +3,10 @@
     display: grid;
     grid-template-areas:
         "main"
-        "players"
+        "cta"
         "stat"
-        "pot"
-        "cta";
+        "players"
+        "pot";
     grid-gap: 0.5rem;
     grid-template-columns: 100%;
     flex: 1;

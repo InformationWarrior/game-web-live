@@ -5,7 +5,7 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   grid-area: stat;
-  display: none;
+  display: flex;
 }
 
 .content {
