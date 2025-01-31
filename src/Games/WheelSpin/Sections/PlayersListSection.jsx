@@ -1,9 +1,9 @@
 import React from "react";
 import Player from "../components/Player";
 import PlayersList from "../styles/SectionModules/PlayersList.module.css";
-// import heading from "../styles/PlayersList/heading.module.css";
 import playerAvatar from "../assets/playerAvatar.png";
-
+import styles from "../styles/SectionModules/PlayersList.module.css";
+import { FaEthereum } from "react-icons/fa";
 function PlayersListSection() {
   const borderColorClasses = [
     "border-green",
@@ -180,14 +180,18 @@ function PlayersListSection() {
 
   let totalPlayers = 0;
   return (
-    <div className={PlayersList.content}>
-      <div className={PlayersList.heading}>
-        <p className={PlayersList.headingStyle}>{players.length} Players</p>
+    <div className={styles["players-list-content"]}>
+      {/* Header */}
+      <div className={styles["players-list-header"]}>
+        <p className={styles["players-list-header-text"]}>
+          {players.length} Players
+        </p>
       </div>
-      <div>
-        {players.map((player, index) => (
-          <Player key={index} {...player} />
-        ))}
+
+      {/* Body */}
+      <div className={styles["players-list-body"]}>
+        <Player />
+        <Player />
       </div>
     </div>
   );

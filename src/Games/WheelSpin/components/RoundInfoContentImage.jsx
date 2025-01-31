@@ -7,7 +7,7 @@ function RoundInfoContentImage(props) {
   return (
     <div className={RoundInfo.footerContent}>
       <div className={RoundInfo.footerContentTwo}>
-        <FaEthereum />
+        {/* <FaEthereum /> */}
         <div className={RoundInfo.data}>
           <p className={RoundInfo.dataText}>{headingData}</p>
         </div>

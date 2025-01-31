@@ -21,7 +21,7 @@ function WheelSpin() {
     <>
       <div className={PageLayout.container}>
         <div className={GridLayout.container}>
-          <div className={PlayersList.container}>
+          <div className={PlayersList["players-list-container"]}>
             <PlayersListSection />
           </div>
           <div className={SpinWheel.container}>

@@ -2,6 +2,7 @@ import React from "react";
 import { FaEthereum } from "react-icons/fa";
 import "../styles/RoundContentItem.css";
 import styles from "../styles/SectionModules/RoundContents.module.css";
+
 function RoundContentItem() {
   return (
     <div className={styles["round-item"]}>
