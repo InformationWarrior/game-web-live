@@ -7,8 +7,8 @@ import {
   setInGameMessage,
 } from "../../../Common/redux/slices/wheelSpinSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
-
+import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+import SpinWheel from "../styles/SectionModules/SpinWheel.module.css";
 // Define prizes and colors
 const segments = ["Player 1", "Player 2", "Player 3"];
 
@@ -45,7 +45,7 @@ export default function WheelWithPin() {
 
     setTimeout(() => {
       console.log("stopped");
-      getWinner(totalRotation)
+      getWinner(totalRotation);
       setIsSpinning(false);
     }, 4000);
   };
@@ -73,11 +73,17 @@ export default function WheelWithPin() {
     // const color = getSegmentColor(wheelCenterX, wheelCenterY, pinCenterX, pinCenterY);
     // console.log({ color });
 
-    const color = getSegmentColorByCoords(wheelRef, 671.6458740234375, 139.7916717529297)
+    const color = getSegmentColorByCoords(
+      wheelRef,
+      671.6458740234375,
+      139.7916717529297
+    );
     console.log({ color });
 
     // Calculate the angle between the wheel center and pin center
-    const angle = Math.atan2(pinCenterY - wheelCenterY, pinCenterX - wheelCenterX) * (180 / Math.PI);
+    const angle =
+      Math.atan2(pinCenterY - wheelCenterY, pinCenterX - wheelCenterX) *
+      (180 / Math.PI);
 
     // Normalize angle to [0, 360]
     const normalizedAngle = (angle + 360) % 360;
@@ -97,7 +103,7 @@ export default function WheelWithPin() {
     dispatch(setInGameMessage(`You won: ${winningPrize}`));
     dispatch(setGameState("RESET"));
     setTooltipContent(`You won: ${winningPrize}`); // Display the winning prize
-  }
+  };
 
   // Function to calculate the segment color based on pin position
   // function getSegmentColor(centerX, centerY, pinX, pinY) {
@@ -170,101 +176,103 @@ export default function WheelWithPin() {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      {/* Pin Image */}
-      <FontAwesomeIcon
-        ref={pinRef}
-        icon={faLocationPin}
-        style={{
-          zIndex: 3,
-          fontSize: '3rem',
-          position: 'absolute',
-          top: '5%', // Pin is now placed at the center vertically
-          left: '50%', // Pin is now placed at the center horizontally
-          transform: 'translate(-50%, -100%)', // Adjust to make the pin point to the top center
-          color: 'red',
-        }}
-      />
-      {/* Wheel */}
+    <div className={SpinWheel.wheel}>
       <div
         style={{
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          border: "3px solid yellow",
           position: "relative",
-          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <motion.div
-          ref={wheelRef}
-          onClick={handleMouseClick}
-          animate={{ rotate: rotation }}
-          transition={{ duration: 4, ease: "easeOut" }}
+        {/* Pin Image */}
+        <FontAwesomeIcon
+          ref={pinRef}
+          icon={faLocationPin}
+          style={{
+            zIndex: 3,
+            fontSize: "3rem",
+            position: "absolute",
+            top: "5%", // Pin is now placed at the center vertically
+            left: "50%", // Pin is now placed at the center horizontally
+            transform: "translate(-50%, -100%)", // Adjust to make the pin point to the top center
+            color: "red",
+          }}
+        />
+        {/* Wheel */}
+        <div
           style={{
             width: "300px",
             height: "300px",
-            position: "absolute",
-            top: "0",
-            left: "0",
-            zIndex: 1,
+            borderRadius: "50%",
+            border: "3px solid yellow",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <PieChart width={300} height={300}>
-            <Pie
-              data={data}
-              dataKey="value"
-              cx="50%"
-              cy="50%"
-              innerRadius={80}
-              outerRadius={150}
-              startAngle={90}
-              endAngle={-270}
+          <motion.div
+            ref={wheelRef}
+            onClick={handleMouseClick}
+            animate={{ rotate: rotation }}
+            transition={{ duration: 4, ease: "easeOut" }}
+            style={{
+              width: "300px",
+              height: "300px",
+              position: "absolute",
+              top: "0",
+              left: "0",
+              zIndex: 1,
+            }}
+          >
+            <PieChart width={300} height={300}>
+              <Pie
+                data={data}
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                innerRadius={80}
+                outerRadius={150}
+                startAngle={90}
+                endAngle={-270}
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Pie>
+            </PieChart>
+            {/* We need to create a canvas element that we can draw the pie chart on */}
+            <canvas
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none", // This ensures the canvas doesn't interfere with the mouse click
+              }}
+              width={300}
+              height={300}
             >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-          </PieChart>
-          {/* We need to create a canvas element that we can draw the pie chart on */}
-          <canvas
+              {/* Canvas content rendered by the Pie chart */}
+            </canvas>
+          </motion.div>
+
+          {/* Center Text */}
+          <div
             style={{
               position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none", // This ensures the canvas doesn't interfere with the mouse click
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 2,
+              textAlign: "center",
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: "white",
             }}
-            width={300}
-            height={300}
           >
-            {/* Canvas content rendered by the Pie chart */}
-          </canvas>
-        </motion.div>
-
-        {/* Center Text */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            zIndex: 2,
-            textAlign: "center",
-            fontSize: "20px",
-            fontWeight: "bold",
-            color: "white",
-          }}
-        >
-          {tooltipContent}
+            {tooltipContent}
+          </div>
         </div>
       </div>
     </div>
