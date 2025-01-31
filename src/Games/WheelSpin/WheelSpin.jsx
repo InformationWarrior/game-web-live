@@ -30,7 +30,7 @@ function WheelSpin() {
           <div className={RoundInfo.container}>
             <RoundInfoSection />
           </div>
-          <div className={RoundContents.container}>
+          <div className={RoundContents["round-content-wrapper"]}>
             <RoundContentsSection />
           </div>
           <div className={PlayerBets.container}>
