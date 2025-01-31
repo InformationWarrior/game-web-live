@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/Player.css";
 import { FaEthereum } from "react-icons/fa";
 import styles from "../styles/SectionModules/PlayersList.module.css";
+import playerAvatar from "../assets/playerAvatar.png";
 function Player(props) {
   const {
     avatar,
@@ -19,7 +20,7 @@ function Player(props) {
         <div className={styles["player-card"]}>
           <div className={styles["player-avatar-container"]}>
             <div className="player-avatar">
-              <img src={avatar} alt={username} />
+              <img src={playerAvatar} alt={username} />
             </div>
           </div>
 
