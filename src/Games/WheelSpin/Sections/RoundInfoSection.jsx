@@ -48,10 +48,11 @@ function RoundInfoSection() {
       <div className={RoundInfo.head}>
         <p className={RoundInfo.headText}>Round {gameRound}</p>
         <div className={RoundInfo.timerPlaceholder}>
-          <div className={RoundInfo.timer}>
-            {/* <p className={RoundInfo.timerText}>02:00</p> */}
+          {/* <div className={RoundInfo.timer}>
+            <p className={RoundInfo.timerText}>02:00</p>
             <AnotherTimerComponent />
-          </div>
+          </div> */}
+          <AnotherTimerComponent />
         </div>
       </div>
 

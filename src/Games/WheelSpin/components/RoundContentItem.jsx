@@ -10,8 +10,11 @@ function RoundContentItem() {
         <div className={styles["round-item-image-container"]}>
           <FaEthereum className={styles["round-item-image-icon"]} />
         </div>
-        <div className={styles["round-item-text-container"]}>
-          <FaEthereum className={styles["round-item-currency-icon"]} />
+        <div
+          className={styles["round-item-text-container"]}
+          style={{ justifyContent: "center" }}
+        >
+          {/* <FaEthereum className={styles["round-item-currency-icon"]} /> */}
           <p className={styles["round-item-text"]}>0.04</p>
         </div>
       </div>
